@@ -12,4 +12,4 @@
 
 上游主题自带部分空白格式问题，未进行全库格式化；本轮修改的文档与仓库配置通过 diff 空白检查。生产构建提示个别脚本包较大，未在仓库整理阶段调整主题功能。
 
-GitHub Actions 已配置，未在远程运行。用户仓库 origin 尚未提供，未推送或部署。原 Next.js 骨架及验证记录保存在历史标签和 docs/history/nextjs-initial/。
+后续已绑定并推送至 ZDD030/personal-site，GitHub Actions 将随 main 推送运行，结果见仓库 Actions 页面；未部署网站。原 Next.js 骨架及验证记录保存在历史标签和 docs/history/nextjs-initial/。

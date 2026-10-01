@@ -2,19 +2,19 @@
 
 当前目录 `D:/个人网站` 是独立 Git 仓库，正式分支 `main`。完整主题源码、公开资源与内容均由此仓库管理。
 
-## 首次上传
+## 已初始化的仓库
 
-在 GitHub 创建自己的空仓库，例如 `personal-site`，首次不用额外初始化 README、许可证或 .gitignore。按个人资料是否准备公开选择仓库可见性。
+[ZDD030/personal-site](https://github.com/ZDD030/personal-site) 已绑定为 origin，main 已首次推送并建立追踪关系。
 
-替换为自己的地址后执行：
+换电脑时克隆本站：
 
 ```powershell
-git remote add origin https://github.com/你的用户名/personal-site.git
-git push -u origin main
-git push origin nextjs-initial
+git clone https://github.com/ZDD030/personal-site.git
+cd personal-site
+pnpm.cmd install --frozen-lockfile
 ```
 
-也可以把仓库链接交给 Codex 绑定和上传。当前未提供目标地址，尚未设置 `origin`。`upstream` 是主题作者仓库，不向其推送。
+`origin` 是自己的项目，`upstream` 是主题作者仓库，不向其推送。
 
 ## 后续更新
 

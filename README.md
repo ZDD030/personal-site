@@ -49,6 +49,7 @@ pnpm.cmd new-d 今天的随记
 - [项目需求](docs/PROJECT.md)
 - [技术与目录](docs/ARCHITECTURE.md)
 - [开发进度](docs/ROADMAP.md)
+- [下一轮具体搭建](docs/BUILD-NEXT.md)
 - [上传 GitHub](docs/GITHUB.md)
 - [开源来源](docs/UPSTREAM.md)
 - [上游主题原始说明](docs/FIREFLY-UPSTREAM.md)

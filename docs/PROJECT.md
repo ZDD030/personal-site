@@ -22,7 +22,7 @@
 
 ## 当前状态
 
-主题代码、配置、文章示例、资源、许可证与 lockfile 纳入 `main`。仅绑定读取主题作者仓库的 `upstream`，尚未设置用户 GitHub 仓库 `origin`，未上传、未上线。
+主题代码、配置、文章示例、资源、许可证与 lockfile 已上传至 [ZDD030/personal-site](https://github.com/ZDD030/personal-site) 的 `main`。`origin` 指向本站仓库，`upstream` 读取主题作者更新。网站尚未上线，下一轮具体搭建见 BUILD-NEXT.md。
 
 原 Next.js 骨架保存在 `nextjs-initial` 标签，旧文档副本位于 `docs/history/nextjs-initial/`。`.local-archive/` 是被忽略的本机旧运行文件。
 
