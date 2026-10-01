@@ -1,5 +1,7 @@
 # 开源 UI 与建站方案
 
+本文件保留初始比较记录。2026-10-01 后续已将 Firefly 正式源码迁入根目录并纳入 main；当前入口见 PROJECT.md 与 GITHUB.md，不再按临时预览目录开发。
+
 2026-10-01，用户补充要求：UI 尽量复用开源库，并提供 Linux.do 帖子 `https://linux.do/t/topic/2727303` 中的 Halo、vhAstro-Theme 和 Hugo Inkstone 建议。
 
 帖子正文由用户粘贴提供；直接访问返回 403。已核实 vhAstro-Theme、Halo、Firefly 与 Fuwari 官方仓库的 README、许可证。用户进一步提供 Firefly 演示站及 Firefly、Fuwari 仓库；建议优先 Firefly，当前建立独立本地预览，尚未替换根目录项目。

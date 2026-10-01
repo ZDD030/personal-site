@@ -45,6 +45,16 @@ yarn-error.log*
 /playwright-report/
 /.playwright-mcp/
 /theme-previews/
+/.local-archive/
+/dist/
+/.astro/
+/cache/
+/public/vndb-covers/
+/.wrangler/
+/.netlify/
+/.idea/
+/.obsidian/
+pnpm-debug.log*
 *.sqlite
 *.sqlite-*
 *.db

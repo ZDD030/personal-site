@@ -1,46 +1,56 @@
-# 个人网站
+# 个人网站 · Firefly
 
-独立个人网站，沿用已确定的 Next.js + TypeScript + Tailwind CSS 技术路线。当前完成项目初始化和公开页面骨架，内容数据库与写作后台待开发。
+基于 [CuteLeaf/Firefly](https://github.com/CuteLeaf/Firefly) 的个人网站，复用开源博客界面，包含文章、随记、项目及关于页面。主题资料和示例文章暂未个性化。
 
-## 本地运行
+根目录就是正式网站源码，已纳入 Git，使用 `main` 分支。原 Next.js 骨架保存在历史标签 `nextjs-initial`。
 
-需要 Node.js 24 LTS 和 npm。依赖已安装；换机器后执行：
+## 本地开发
 
-```powershell
-npm.cmd ci
-npm.cmd run dev
-```
-
-打开 http://127.0.0.1:3000 。Windows PowerShell 下使用 `npm.cmd` 可避开 npm.ps1 执行策略问题；其他终端使用 `npm` 即可。开发服务只监听本机。
+使用 Node.js 24 LTS 和 pnpm 11，在根目录执行：
 
 ```powershell
-npm.cmd run check     # ESLint 与类型检查
-npm.cmd run build     # 生产构建
-npm.cmd start         # 构建完成后启动生产服务
+pnpm.cmd install --frozen-lockfile
+pnpm.cmd dev --host 127.0.0.1 --port 4321
 ```
 
-## 项目入口
+打开 http://127.0.0.1:4321/ 。Codex 环境下也可执行 `powershell -ExecutionPolicy Bypass -File .\scripts\preview-site.ps1`，避免首次自动后台启动超时。
 
-- [需求与当前范围](docs/PROJECT.md)
-- [技术、目录与部署约定](docs/ARCHITECTURE.md)
+```powershell
+pnpm.cmd check
+pnpm.cmd type-check
+pnpm.cmd build
+pnpm.cmd preview --host 127.0.0.1 --port 4321
+```
+
+Windows PowerShell 使用 `pnpm.cmd`，其他终端使用 `pnpm`。`dist/` 是构建产物，不提交 Git。GitHub Actions 配置检查及构建，未配置自动部署。
+
+## 内容与配置
+
+| 内容 | 位置 |
+| --- | --- |
+| 站名、语言、页面开关 | `src/config/siteConfig.ts` |
+| 头像、简介、联系链接 | `src/config/profileConfig.ts` |
+| 导航 | `src/config/navBarConfig.ts` |
+| 壁纸 | `src/config/backgroundWallpaper.ts` |
+| 文章 | `src/content/posts/` |
+| 随记 | `src/content/dynamic/` |
+| 项目 | `src/content/projects/` |
+| 关于 | `src/content/spec/about.md` |
+
+```powershell
+pnpm.cmd new-post first-post
+pnpm.cmd new-d 今天的随记
+```
+
+当前通过 Markdown 文件维护内容。登录网页后写文章的后台仍待接入。
+
+## 项目文档
+
+- [项目需求](docs/PROJECT.md)
+- [技术与目录](docs/ARCHITECTURE.md)
 - [开发进度](docs/ROADMAP.md)
-- [开源主题比较](docs/UI-OPTIONS.md)
-- `src/config/site.ts`：站点资料、导航、项目。
-- `materials/`：本地原始素材，默认不进入 Git。
-- `data/`：本地运行数据，默认不进入 Git。
+- [上传 GitHub](docs/GITHUB.md)
+- [开源来源](docs/UPSTREAM.md)
+- [上游主题原始说明](docs/FIREFLY-UPSTREAM.md)
 
-首页、文章、随记、项目、关于已可访问。健康检查为 `/api/health`，当前仅检查进程响应。`/admin` 尚未实现。页面中的文章与随记为空，不包含模拟发布内容。站名和简介为初始文案，待补充个人资料。
-
-未来文章与随记通过自己的网页后台写入独立 SQLite，支持草稿、预览、发布、撤回及导出；首版完成后发文章无需重新部署。个人站与保研工作台保持独立，未来共用服务器并通过域名分流。
-
-目前只有本地 Git 仓库。GitHub CI 配置已写入，远程仓库绑定后才会运行；未配置自动部署。
-
-## Firefly 开源主题预览
-
-按后续讨论新增独立 Firefly 预览，位于 `theme-previews/firefly/`。它是现成的开源博客主题，页面中的文章、头像与介绍属于上游演示内容，尚未替换成站主资料。
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\preview-firefly.ps1
-```
-
-默认预览地址为 http://127.0.0.1:4321 。Firefly 与根目录 Next.js 骨架分别运行；正式选定后再整理为单一项目。Firefly 使用 pnpm，原始 README 与许可证保存在预览目录内。
+`materials/` 放未公开素材，`data/` 放本地运行数据，默认不进入 Git。保留 Firefly 与 Fuwari 的 MIT 许可证及作者署名。本站与保研工作台独立开发和部署。

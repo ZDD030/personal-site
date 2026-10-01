@@ -1,21 +1,45 @@
-<!-- BEGIN:nextjs-agent-rules -->
+# Repository Guidelines
 
-# This is NOT the Next.js you know
+## Personal Site Conventions
 
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+- The root is the active personal website based on Firefly; read `docs/PROJECT.md`, `docs/ARCHITECTURE.md`, and `docs/ROADMAP.md` first.
+- Use Node.js 24 and pnpm. Preserve the MIT license, attribution, and upstream metadata in `docs/UPSTREAM.md`.
+- `main` holds the active website. `nextjs-initial` preserves the earlier Next.js scaffold; `.local-archive/` and `theme-previews/` are ignored.
+- Do not invent personal details or treat upstream demo posts as the owner's writing.
+- Do not commit private data, credentials, build outputs, or node_modules. Keep the baoyan app independent.
+- Reuse Astro/Svelte components and configuration before adding custom UI.
+- Do not push to `upstream`; it belongs to the theme author. `origin` must be the user's repository.
+- For MATLAB/Simulink, prefer MathWorks MCP and skills; confirm Desktop READY or satk_initialize before batch fallback.
 
-This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+## Project Structure & Module Organization
 
-<!-- END:nextjs-agent-rules -->
+Firefly is an Astro 7 site with Svelte islands and TypeScript configuration. Main source code lives in `src/`: routes in `src/pages`, layouts in `src/layouts`, reusable UI in `src/components`, styles in `src/styles`, content in `src/content`, helpers in `src/utils`, and Markdown/HTML plugins in `src/plugins`. Site configuration is split across `src/config` with matching type definitions in `src/types`; prefer imports from `@/config` when available. Static files served directly belong in `public`, source-managed images in `src/assets`, docs in `docs` and `Firefly-Docs`, and automation in `scripts`.
 
-## 项目约定
+## Build, Test, and Development Commands
 
-- 开始工作先阅读 `docs/PROJECT.md`、`docs/ARCHITECTURE.md` 与 `docs/ROADMAP.md`。
-- 本项目是个人站，保研工作台保持独立；不导入其数据库或学生资料。
-- 保持 Node.js 24、Next.js App Router、TypeScript、Tailwind 和独立 SQLite 的选型。
-- 站点配置统一维护于 `src/config/site.ts`，不编造个人身份、联系方式或发布内容。
-- 内容数据库和写作后台尚未实现；每次交付更新进度，区分规划与已验证功能。
-- 不把数据库、密钥、备份、未公开素材放入 `public/` 或提交 Git。
-- 页面设计减少说明和标签堆叠，重视留白、阅读体验、手机布局和键盘操作。
-- 完成更改后运行适当检查，当前基础命令为 `npm run check` 与 `npm run build`。
-- 用户提到 MATLAB / Simulink 时优先使用 MathWorks MCP 与注册技能；连接失败先确认 Desktop READY 或运行 satk_initialize。
+Use `pnpm`; the `preinstall` script enforces it.
+
+- `pnpm dev` or `pnpm start`: run the local Astro dev server.
+- `pnpm check`: run Astro diagnostics.
+- `pnpm type-check`: run TypeScript with `--noEmit`.
+- `pnpm format`: format `src` with Biome.
+- `pnpm lint`: run Biome checks and safe fixes on `src`.
+- `pnpm build`: generate icons, LQIPs, the Astro build, font subsets, and Pagefind search output in `dist`.
+- `pnpm preview`: preview the production build locally.
+- `pnpm new-post`: scaffold a new content post.
+
+## Coding Style & Naming Conventions
+
+Biome is the formatter and linter. It uses tabs for indentation and double quotes for JavaScript/TypeScript strings. Keep Astro and Svelte components in `PascalCase` (`PostCard.astro`, `Search.svelte`), config modules in `camelCase` ending with `Config.ts`, and utilities in descriptive kebab case such as `date-utils.ts`. Keep `src/types` aligned with `src/config`. Avoid unrelated formatting churn.
+
+## Testing Guidelines
+
+There is no dedicated unit-test framework configured. Before submitting changes, run `pnpm check`, `pnpm type-check`, and `pnpm build` for rendering, content, or generated asset work. For visual or interactive changes, verify with `pnpm dev` or `pnpm preview` and include screenshots in the PR. Name future tests near the feature they cover, using the local file name as the stem.
+
+## Commit & Pull Request Guidelines
+
+Use Conventional Commits, matching the current history: `feat: ...`, `fix: ...`, and `chore: ...`. Keep commits and PRs focused on one concern. PRs should include a concise summary, linked issues when relevant, validation commands run, and screenshots for UI changes. Discuss major features or design changes in an issue or discussion before implementation.
+
+## Security & Configuration Tips
+
+Do not commit secrets, tokens, or service keys in config files. Keep deployment-specific settings in the target platform environment, and review generated files such as `dist`, `src/constants/lqips.json`, and `src/constants/icons.ts` before committing them.
