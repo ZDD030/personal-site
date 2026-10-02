@@ -1,8 +1,8 @@
 ---
-import { getEntry, render } from "astro:content";
 import Comment from "@components/comment/index.astro";
 import Markdown from "@components/common/Markdown.astro";
 import { Icon } from "astro-icon/components";
+import { Content } from "@/content/spec/friends.mdx";
 import {
 	commentConfig,
 	friendsPageConfig,
@@ -19,14 +19,6 @@ import "@/styles/pages/friends.css";
 if (!siteConfig.pages.friends) {
 	return Astro.redirect("/404/");
 }
-
-const friendsPost = await getEntry("spec", "friends");
-
-if (!friendsPost) {
-	throw new Error("friends page content not found");
-}
-
-const { Content } = await render(friendsPost);
 
 // 检查评论系统是否启用
 const isCommentEnabled =
@@ -185,7 +177,7 @@ const description =
   <!-- 评论区 -->
   {isCommentEnabled && (
     <div class="mt-4">
-      <Comment post={friendsPost} customPath="/friends/" />
+      <Comment customPath="/friends/" title={title} />
     </div>
   )}
 

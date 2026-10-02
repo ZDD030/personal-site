@@ -1,0 +1,41 @@
+---
+import type { GetStaticPaths } from "astro";
+import Markdown from "@/components/common/Markdown.astro";
+import HandbookContents from "@/components/handbook/HandbookContents.astro";
+import MainGridLayout from "@/layouts/MainGridLayout.astro";
+import { getHandbookChapters, handbookStatusLabels } from "@/utils/handbook";
+import type { HandbookChapter } from "@/utils/handbook";
+
+export const getStaticPaths = (() => getHandbookChapters().map((chapter) => ({
+	params: { chapter: chapter.slug },
+	props: { chapter },
+}))) satisfies GetStaticPaths;
+
+interface Props { chapter: HandbookChapter; }
+const { chapter } = Astro.props;
+const chapters = getHandbookChapters();
+const index = chapters.findIndex((item) => item.slug === chapter.slug);
+const previous = chapters[index - 1];
+const next = chapters[index + 1];
+const { Content, frontmatter } = chapter;
+const headings = chapter.getHeadings();
+---
+
+<MainGridLayout title={frontmatter.title} description={frontmatter.description} headings={headings}>
+    <div class="mb-4 flex flex-wrap items-center justify-between gap-2 text-sm">
+        <a class="btn-regular rounded-lg px-3 py-2" href="/handbook/">← 手册总目录</a>
+        <span class="text-black/50 dark:text-white/50">喀什大学生存手册 · {handbookStatusLabels[frontmatter.status]}</span>
+    </div>
+    <HandbookContents chapters={chapters} currentSlug={chapter.slug} />
+    <article class="card-base px-5 py-6 sm:px-9 sm:py-8">
+        <header class="mb-6">
+            <h2 class="text-2xl font-bold leading-relaxed text-black/85 dark:text-white/85">{frontmatter.title}</h2>
+            <p class="mt-2 text-sm text-black/50 dark:text-white/50">{frontmatter.description}</p>
+        </header>
+        <Markdown class="handbook-content"><Content /></Markdown>
+    </article>
+    <nav aria-label="手册前后章节" class="mt-4 grid gap-3 sm:grid-cols-2">
+        {previous ? <a class="card-base p-4" href={`/handbook/${previous.slug}/`}><span class="block text-xs text-black/45 dark:text-white/45">上一篇</span><span class="mt-1 block text-sm font-bold">{previous.frontmatter.title}</span></a> : <a class="card-base p-4" href="/handbook/">返回手册总目录</a>}
+        {next && <a class="card-base p-4 text-right" href={`/handbook/${next.slug}/`}><span class="block text-xs text-black/45 dark:text-white/45">下一篇</span><span class="mt-1 block text-sm font-bold">{next.frontmatter.title}</span></a>}
+    </nav>
+</MainGridLayout>

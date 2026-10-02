@@ -9,6 +9,8 @@
 ```text
 src/config/       站点配置与功能开关
 src/content/      文章、随记、项目和固定页
+src/content/handbook/  手册各章（独立 Markdown 文件）
+src/pages/handbook/    手册目录与章节路由
 src/pages/        Astro 路由
 src/components/   主题组件
 src/layouts/      页面布局
@@ -22,6 +24,8 @@ dist/             构建输出，Git 忽略
 ```
 
 主题代码直接由本站 Git 管理，无子模块或嵌套仓库。原预览目录保留在本机并忽略，后续开发在根目录进行。
+
+手册直接导入 Markdown，复用 MainGridLayout 与 Markdown 组件；src/utils/handbook.ts 自动收集各章并按 order 排序，目录、章节链接与前后篇导航共用这份数据。手册不作为单篇博客文章进入文章列表，通过首页置顶文章与导航提供入口。
 
 ## Git 与发布
 

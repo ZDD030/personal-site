@@ -1,7 +1,7 @@
 ---
 
-import { getEntry, render } from "astro:content";
 import Markdown from "@components/common/Markdown.astro";
+import { Content } from "@/content/spec/about.md";
 import { profileConfig } from "@/config/profileConfig";
 import { siteConfig } from "@/config/siteConfig";
 import I18nKey from "@/i18n/i18nKey";
@@ -9,14 +9,6 @@ import { i18n } from "@/i18n/translation";
 import MainGridLayout from "@/layouts/MainGridLayout.astro";
 import { getAuthorAvatarUrl } from "@/utils/schema-image";
 import { buildProfilePage } from "@/utils/schema-utils";
-
-const aboutPost = await getEntry("spec", "about");
-
-if (!aboutPost) {
-	throw new Error("About page content not found");
-}
-
-const { Content } = await render(aboutPost);
 
 const avatarUrl = await getAuthorAvatarUrl();
 const jsonLd = buildProfilePage({

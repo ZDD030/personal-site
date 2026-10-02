@@ -5,10 +5,10 @@ import type { FriendLink, FriendsPageConfig } from "../types/friendsConfig";
 // 友链页面配置
 export const friendsPageConfig: FriendsPageConfig = {
 	// 页面标题，如果留空则使用 i18n 中的翻译
-	title: "",
+	title: "友链与推荐阅读",
 
 	// 页面描述文本，如果留空则使用 i18n 中的翻译
-	description: "",
+	description: "他山之石，可以攻玉。",
 
 	// 是否显示底部自定义内容（friends.mdx 中的内容）
 	showCustomContent: true,
@@ -22,6 +22,15 @@ export const friendsPageConfig: FriendsPageConfig = {
 
 // 友链配置
 export const friendsConfig: FriendLink[] = [
+	{
+		title: "上海交通大学生存手册",
+		imgurl: "/assets/images/links/survive-sjtu.svg",
+		desc: "大学生活与求学经验的分享，作为《喀什大学生存手册》的参考。",
+		siteurl: "https://survivesjtu.gitbook.io/survivesjtumanual",
+		tags: ["大学生活", "生存手册"],
+		weight: 20,
+		enabled: true,
+	},
 	{
 		title: "夏夜流萤",
 		imgurl:

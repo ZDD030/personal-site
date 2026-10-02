@@ -1,0 +1,43 @@
+---
+import { Icon } from "astro-icon/components";
+import MainGridLayout from "@/layouts/MainGridLayout.astro";
+import { getHandbookChapters, handbookStatusLabels } from "@/utils/handbook";
+import "@/styles/pages/common.css";
+
+const chapters = getHandbookChapters();
+const title = "喀什大学生存手册";
+const description = "写给初来喀大、正在摸索大学生活与求学方向的你。";
+---
+
+<MainGridLayout title={title} description={description}>
+    <section class="page-shell">
+        <header class="card-base page-header">
+            <div class="page-heading">
+                <div class="page-icon" aria-hidden="true"><Icon name="material-symbols:menu-book-rounded" /></div>
+                <div><h2>{title}</h2><p>{description}</p></div>
+            </div>
+            <div class="col-span-full space-y-3 text-sm leading-relaxed text-black/65 dark:text-white/65">
+                <p>他山之石，可以攻玉。</p>
+                <p>从入学、学习与电气专业，到升学选择和日常生活，愿这些逐步整理的记录，能为后来者提供一些参考。</p>
+                <p>手册正在编写：序已有初稿，其余篇章先列出提纲，具体经验与资料将陆续补充。</p>
+                <a class="btn-regular inline-flex rounded-lg px-4 py-2" href="/handbook/preface/">从序开始阅读 <Icon name="material-symbols:arrow-forward-rounded" class="ml-2" /></a>
+            </div>
+        </header>
+        <ol class="grid gap-4 sm:grid-cols-2" aria-label="手册目录">
+            {chapters.map((chapter) => (
+                <li class="card-base">
+                    <a href={`/handbook/${chapter.slug}/`} class="block rounded-(--radius-large) p-5 sm:p-6 hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+                        <span class="text-xs text-(--primary)">{handbookStatusLabels[chapter.frontmatter.status]}</span>
+                        <h3 class="mt-2 font-bold text-lg text-black/85 dark:text-white/85">{chapter.frontmatter.title}</h3>
+                        <p class="mt-2 text-sm leading-relaxed text-black/55 dark:text-white/55">{chapter.frontmatter.description}</p>
+                    </a>
+                </li>
+            ))}
+        </ol>
+        <div class="card-base p-5 sm:p-6 text-sm leading-relaxed">
+            <h3 class="font-bold mb-2">延伸阅读</h3>
+            <p><a class="text-(--primary) underline" href="https://survivesjtu.gitbook.io/survivesjtumanual" target="_blank" rel="noopener noreferrer">上海交通大学生存手册</a> 是这份手册的写作参考之一。</p>
+            <p class="mt-2"><a class="text-(--primary) underline" href="/posts/baoyan-to-scut/">保研复盘：从四非到华南理工大学（985）</a></p>
+        </div>
+    </section>
+</MainGridLayout>

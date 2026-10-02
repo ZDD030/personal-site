@@ -99,7 +99,7 @@ export default defineConfig({
 						provider = fontProviders.fontshare();
 						break;
 					case "npm":
-						provider = fontProviders.npm();
+						provider = fontProviders.npm({ remote: false });
 						break;
 					default:
 						provider = f.provider;
@@ -131,10 +131,12 @@ export default defineConfig({
 				"#floating-toc-wrapper",
 			],
 			smoothScrolling: false,
-			cache: true,
+			// 开发时即时读取修改后的页面，避免保留旧内容或错误页。
+			cache: process.env.NODE_ENV !== "development",
 			preload: {
 				hover: true,
-				visible: true,
+				// 可见菜单不批量预加载；仅在准备点击时预加载目标页。
+				visible: false,
 			},
 			accessibility: true,
 			updateHead: true,
@@ -354,7 +356,18 @@ export default defineConfig({
 		plugins: [tailwindcss()],
 		server: {
 			watch: {
-				ignored: ["**/package/**", "**/Firefly-docs/**"],
+				// Windows 原生监听出现成批的误报删除事件时会让开发服务不断重启。
+				usePolling: process.platform === "win32",
+				interval: 300,
+				ignored: [
+					"**/package/**",
+					"**/Firefly-docs/**",
+					"**/theme-previews/**",
+					"**/.local-archive/**",
+					"**/dist/**",
+					"**/artifacts/**",
+					"**/.playwright-mcp/**",
+				],
 			},
 		},
 		resolve: {

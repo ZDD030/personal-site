@@ -1,6 +1,6 @@
 # 个人网站 · Firefly
 
-基于 [CuteLeaf/Firefly](https://github.com/CuteLeaf/Firefly) 的个人网站，复用开源博客界面，包含文章、随记、项目及关于页面。主题资料和示例文章暂未个性化。
+Thach Soul 的电气札记，基于 [CuteLeaf/Firefly](https://github.com/CuteLeaf/Firefly)，复用开源博客界面。记录电气工程及其自动化、四非保研至华南理工大学（985）的经历，以及求学与生活思考。首批文章和手册已搭好框架，正文待逐步补充。
 
 根目录就是正式网站源码，已纳入 Git，使用 `main` 分支。原 Next.js 骨架保存在历史标签 `nextjs-initial`。
 
@@ -14,6 +14,12 @@ pnpm.cmd dev --host 127.0.0.1 --port 4321
 ```
 
 打开 http://127.0.0.1:4321/ 。Codex 环境下也可执行 `powershell -ExecutionPolicy Bypass -File .\scripts\preview-site.ps1`，避免首次自动后台启动超时。
+
+VS Code 终端保持开发命令运行，保存文件后浏览器会自动更新。首次启动与首次打开页面需要编译，请等终端显示 `ready` 和 `Local` 地址后再访问；端口被占用时以终端实际输出的地址为准。`pnpm preview` 仅查看已构建页面，不用于边改边预览。主题字体从本地 npm 依赖加载，避免启动时等待远程字体服务。
+
+Windows 若提示找不到 `pnpm.cmd`，先在终端执行 `npm.cmd install --global pnpm@11.22.0 --registry=https://registry.npmjs.org`，再新建终端。若仍找不到，检查 `npm.cmd config get prefix` 输出的目录是否已加入用户 PATH。
+
+为减轻本地预览开销，默认关闭背景视频、水波动画和可见菜单批量预加载；相关外观开关在 `src/config/backgroundWallpaper.ts`。关于页继续编辑 `src/content/spec/about.md`，保存即可更新。运行下方检查或构建前先停止开发服务，完成后再启动，避免多个 Astro 进程同时更新生成目录。
 
 ```powershell
 pnpm.cmd check
@@ -36,6 +42,7 @@ Windows PowerShell 使用 `pnpm.cmd`，其他终端使用 `pnpm`。`dist/` 是�
 | 随记 | `src/content/dynamic/` |
 | 项目 | `src/content/projects/` |
 | 关于 | `src/content/spec/about.md` |
+| 喀大手册各章 | `src/content/handbook/` |
 
 ```powershell
 pnpm.cmd new-post first-post
@@ -50,6 +57,7 @@ pnpm.cmd new-d 今天的随记
 - [技术与目录](docs/ARCHITECTURE.md)
 - [开发进度](docs/ROADMAP.md)
 - [下一轮具体搭建](docs/BUILD-NEXT.md)
+- [逐章写作与编辑指南](docs/CONTENT-WRITING.md)
 - [上传 GitHub](docs/GITHUB.md)
 - [开源来源](docs/UPSTREAM.md)
 - [上游主题原始说明](docs/FIREFLY-UPSTREAM.md)

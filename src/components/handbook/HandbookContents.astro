@@ -1,0 +1,29 @@
+---
+import type { HandbookChapter } from "@/utils/handbook";
+import { handbookStatusLabels } from "@/utils/handbook";
+
+interface Props {
+	chapters: HandbookChapter[];
+	currentSlug?: string;
+}
+
+const { chapters, currentSlug } = Astro.props;
+---
+
+<details class="card-base p-4 sm:p-5 mb-4">
+    <summary class="cursor-pointer font-bold text-black/80 dark:text-white/80">手册章节目录</summary>
+    <nav aria-label="喀什大学生存手册章节" class="mt-3">
+        <ol class="grid gap-2 sm:grid-cols-2">
+            {chapters.map((chapter) => (
+                <li>
+                    <a href={`/handbook/${chapter.slug}/`}
+                       aria-current={currentSlug === chapter.slug ? "page" : undefined}
+                       class:list={["flex justify-between items-center gap-3 rounded-lg px-3 py-2 hover:bg-black/5 dark:hover:bg-white/5 transition-colors", currentSlug === chapter.slug && "bg-(--enter-btn-bg) text-(--primary)"]}>
+                        <span class="text-sm">{chapter.frontmatter.title}</span>
+                        <span class="shrink-0 text-xs text-black/45 dark:text-white/45">{handbookStatusLabels[chapter.frontmatter.status]}</span>
+                    </a>
+                </li>
+            ))}
+        </ol>
+    </nav>
+</details>
