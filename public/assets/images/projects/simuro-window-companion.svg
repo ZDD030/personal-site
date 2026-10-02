@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600">
+  <defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#142d52"/><stop offset="1" stop-color="#245b86"/></linearGradient></defs>
+  <rect width="1200" height="600" fill="url(#bg)"/>
+  <g fill="none" stroke="#a2d8eb" opacity=".2" stroke-width="2"><path d="M740 0v600M980 0v600M720 180h480M720 420h480"/><circle cx="965" cy="300" r="170"/></g>
+  <text x="76" y="116" fill="#91dded" font-family="Segoe UI,sans-serif" font-size="25" letter-spacing="5">WINDOWS / C#</text>
+  <g fill="#fff" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif"><text x="76" y="260" font-size="64" font-weight="700">Simuro 窗口助手</text><text x="78" y="340" font-size="29" opacity=".8">窗口管理 · Adapter · 策略配置</text></g>
+  <g stroke="#b0e3f1" fill="#fff" fill-opacity=".07" stroke-width="4"><rect x="790" y="392" width="260" height="142" rx="14"/><path d="M920 392v142M790 426h260M815 409h16M850 409h16"/></g>
+  <text x="78" y="512" fill="#a4c9dc" font-family="Segoe UI,sans-serif" font-size="25">Thach Soul</text>
+</svg>

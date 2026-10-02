@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600">
+  <defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#fcf1df"/><stop offset="1" stop-color="#efd4b9"/></linearGradient></defs>
+  <rect width="1200" height="600" fill="url(#bg)"/>
+  <circle cx="1080" cy="65" r="320" fill="#eac2a0" opacity=".35"/>
+  <text x="76" y="116" fill="#a26337" font-family="Segoe UI,sans-serif" font-size="25" letter-spacing="5">LEARNING / WEB</text>
+  <g fill="#65402a" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif"><text x="76" y="260" font-size="64" font-weight="700">CET-4 远距共学台</text><text x="78" y="340" font-size="29" opacity=".8">学习提交 · 批改反馈 · 留言互动</text></g>
+  <g stroke="#a96f45" fill="#fff" fill-opacity=".35" stroke-width="4"><path d="M865 403q60-15 120 10v125q-60-25-120-10q-60-15-120 10V413q60-25 120-10Z"/><path d="M865 403v125M780 446h53M780 478h53M898 446h53M898 478h53"/></g>
+  <text x="78" y="512" fill="#986c4b" font-family="Segoe UI,sans-serif" font-size="25">Thach Soul</text>
+</svg>

@@ -149,10 +149,31 @@ Markdown 常用写法：`## 小节标题`、`**重点**`、`- 列表项`、`[链
 ## 关于、项目与随记
 
 - 关于：`src/content/spec/about.md`。
-- 项目：`src/content/projects/personal-site.md`，目前只展示已实际存在的个人网站。
+- 项目：`src/content/projects/`，目前包含 Simuro 窗口助手、CET-4 远距共学台和个人网站。
 - 随记：用 `pnpm.cmd new-d "随记正文"` 创建，初始不放虚构的动态。
 - 头像：`src/config/profileConfig.ts`，当前采用你提供的 FAN 1 背影照片。
 - 正式域名尚未确定，`siteConfig.site_url` 暂用本地地址；上线前替换为真实域名。
+
+## 项目与公开文档怎么更新
+
+项目入口是 `/projects/`。每个项目对应一个 Markdown 文件：
+
+| 文件 | 项目 |
+| --- | --- |
+| `src/content/projects/simuro-window-companion.md` | Simuro 窗口助手 |
+| `src/content/projects/cet4-study-platform.md` | CET-4 远距共学台 |
+| `src/content/projects/personal-site.md` | 电气札记个人网站 |
+
+直接编辑正文即可补充介绍。想增加一个新项目，复制已有文件、改文件名，再填写开头的 `title`、`description`、`tags` 和 `link`。
+
+- `image` 是封面地址，当前封面放在 `public/assets/images/projects/`。
+- `order` 越大越靠前。
+- `status` 可用 `planning`（计划中）、`developing`（开发中）、`published`（已发布）、`archived`（已归档）。本轮两项工具的“已发布”表示源码与文档公开，可在正文说明具体版本阶段。
+- `link` 可列多个按钮，例如源码、使用说明和部署指南，每个按钮有 `label`、`icon` 与 `value`。
+- `published` 是本站项目介绍的发布日期；不代表软件完成日期。
+- 正文可补充功能、使用流程、技术选择、真实截图与开发心得。运行软件仍按各自仓库的最新 README，不把项目介绍当作完整安装文档。
+
+这些页面不会自动跟随 GitHub 更新。仓库文档发生变化时，更新这里的摘要与链接，再保存预览。整理依据见 `docs/PUBLIC-PROJECTS.md`。
 
 ## 主题示例
 

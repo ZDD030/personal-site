@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600">
+  <defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#123e32"/><stop offset="1" stop-color="#2d6954"/></linearGradient></defs>
+  <rect width="1200" height="600" fill="url(#bg)"/>
+  <g stroke="#a2dcc0" fill="none" opacity=".18" stroke-width="2"><circle cx="1030" cy="80" r="310"/><circle cx="1030" cy="80" r="220"/><path d="M710 0v600M925 0v600"/></g>
+  <text x="76" y="116" fill="#a2ddbc" font-family="Segoe UI,sans-serif" font-size="25" letter-spacing="5">NOTES / ASTRO</text>
+  <g fill="#f0faf4" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif"><text x="76" y="260" font-size="68" font-weight="700">电气札记</text><text x="78" y="340" font-size="29" opacity=".8">电气 · 求学 · 生活</text></g>
+  <path d="m900 377-55 90h58l-20 69 85-114h-63l25-45Z" fill="#a3e1bb" opacity=".7"/>
+  <text x="78" y="512" fill="#a4cdb9" font-family="Segoe UI,sans-serif" font-size="25">Thach Soul</text>
+</svg>

@@ -32,3 +32,5 @@
 原 Next.js 骨架保存在 `nextjs-initial` 标签，旧文档副本位于 `docs/history/nextjs-initial/`。`.local-archive/` 是被忽略的本机旧运行文件。
 
 个人站与保研工作台独立，未来可同机通过主域名和子域名分流；个人站不读取保研站数据。
+
+2026-10-02 已将公开仓库 SimuroWindowCompanion、CET-4website 整理为独立项目页，连同本站共展示三个项目。项目列表标题为“项目与公开文档”，提供源码、使用说明和 CET-4 部署指南入口；摘要依据与核实版本见 `docs/PUBLIC-PROJECTS.md`。

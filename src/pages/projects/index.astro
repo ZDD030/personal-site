@@ -19,8 +19,8 @@ if (!siteConfig.pages.projects) {
 	return Astro.redirect("/404/");
 }
 
-const title = i18n(I18nKey.projects);
-const description = i18n(I18nKey.projectsDescription);
+const title = "项目与公开文档";
+const description = "整理软件工具、网页实践与使用说明，附上源码和文档入口。";
 
 const projects = await getSortedProjects();
 const projectMeta = projects.map((p) => ({
@@ -58,7 +58,7 @@ const statusFilters = PROJECT_STATUS_KEYS.map((key) => {
 			<div class="page-count" aria-label={title}>
 				<Icon name="material-symbols:rocket-launch" />
 				<strong>{projectMeta.length}</strong>
-				<span>{title}</span>
+				<span>{i18n(I18nKey.projects)}</span>
 			</div>
 		<!-- 搜索 + 状态筛选（标题面板内，整行；搜索与筛选分两行） -->
 		<project-filter style="grid-column: 1 / -1">

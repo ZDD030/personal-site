@@ -53,3 +53,15 @@
 - 修改和写作入口已补充至 `docs/CONTENT-WRITING.md`，包含 VS Code 快捷键、配置位置、换图路径、新文章命令、Markdown 示例、草稿发布和手册篇章规则。
 - 桌面与手机截图保存在本机 `artifacts/fan-home-desktop.png`、`artifacts/fan-home-mobile.png`。
 - 最终 `pnpm check`（263 个文件，0 错误、0 警告、0 提示）、`pnpm type-check` 和完整 `pnpm build` 均通过，生成 36 个页面。
+
+## GitHub 公开项目与文档（2026-10-02）
+
+- GitHub 公共 API 核实账号 ZDD030 的三个公开仓库；根据两个工具的 README、公开文件清单和 CET-4 部署指南整理页面。源版本及说明见 `docs/PUBLIC-PROJECTS.md`。
+- 新增 `/projects/simuro-window-companion/` 和 `/projects/cet4-study-platform/`，提供源码和文档按钮；为三个项目添加用途示意封面。
+- `pnpm check`：263 个文件，0 错误、0 警告、0 提示；`pnpm type-check` 通过；生产构建生成 38 个页面，Pagefind 索引 15 个正文页面。
+- 生产预览中三个项目详情均返回 200；列表包含三项，搜索 Simuro 或 CET 各筛出一项，“已发布”筛出两项，“开发中”筛出本站一项。
+- 全站搜索 Simuro、CET-4、共学均能找到对应项目；这轮列表访问与交互未捕获到页面脚本异常。
+- 390px 手机宽度下检查项目列表和两项新增详情，未发现横向溢出或图片加载失败。截图保存在本机 `artifacts/projects-public-desktop.png`、`artifacts/projects-public-mobile.png`。
+- 完成构建后重启 `http://127.0.0.1:4322/` 开发服务。
+
+本轮验证本站展示与文档入口，未运行或重新部署两个独立软件项目。项目摘要与 GitHub 文档通过手动维护更新。
