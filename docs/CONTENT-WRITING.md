@@ -28,11 +28,13 @@ Windows 下已启用 300ms 轮询监听，避免文件事件误报引发服务�
 
 ### 头像和首页图片
 
-头像已采用你提供的 FAN 1 背影照片；横幅已采用你提供的挥手照片，电脑版本适配为宽图，手机版保留方形构图。网站读取项目中的 WebP 文件，不依赖微信或临时文件目录。
+头像已采用你提供的 FAN 1 背影照片；电脑横幅将蓝衣张开双臂的背影照片融入左侧，右侧保留挥手照片，中间通过渐变衔接。手机版仍使用挥手照片的方形构图。网站读取项目中的 WebP 文件，不依赖微信或临时文件目录。
 
 - 头像：`public/assets/images/profile/fan-avatar.webp`。
-- 电脑横幅：`public/assets/images/wallpaper/fan-wave-desktop.webp`。
+- 电脑横幅：`public/assets/images/wallpaper/fan-collage-desktop.webp`。
 - 手机横幅：`public/assets/images/wallpaper/fan-wave-mobile.webp`。
+
+原电脑挥手横幅保留在 `public/assets/images/wallpaper/fan-wave-desktop.webp`。想恢复原图，将 `backgroundWallpaper.ts` 中的 `src.desktop` 改回 `/assets/images/wallpaper/fan-wave-desktop.webp` 即可。
 
 以后换图，把新文件放在 `public/assets/images/` 中，并修改配置路径。`public` 目录不写进网址，例如文件 `public/assets/images/profile/my-avatar.jpg`，配置填写 `/assets/images/profile/my-avatar.jpg`。
 

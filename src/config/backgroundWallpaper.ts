@@ -37,7 +37,7 @@ export const backgroundWallpaper: BackgroundWallpaperConfig = {
 	 */
 	src: {
 		// 桌面背景图片（支持单张或多张随机）
-		desktop: "/assets/images/wallpaper/fan-wave-desktop.webp",
+		desktop: "/assets/images/wallpaper/fan-collage-desktop.webp",
 		// 移动背景图片（支持单张或多张随机）
 		mobile: "/assets/images/wallpaper/fan-wave-mobile.webp",
 		// 背景视频播放地址
