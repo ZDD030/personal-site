@@ -21,6 +21,7 @@ import { getBannerVisibilityState } from "@/utils/banner-visibility-utils";
 import { getBackgroundImages, isHomePage } from "@/utils/layout-utils";
 import { resolveNavMenuLinks } from "@/utils/nav-menu-utils";
 import { getEffectiveSidebarState } from "@/utils/sidebar-effective-utils";
+import { isArticleDetailPage } from "@/utils/url-utils";
 import Layout from "./Layout.astro";
 
 import "@/styles/expressive-code.css";
@@ -69,7 +70,7 @@ const {
 } = Astro.props;
 
 const isHomePageCheck = isHomePage(Astro.url.pathname);
-const isPostPage = !!postSlug;
+const isPostPage = !!postSlug || isArticleDetailPage(Astro.url.pathname);
 const shouldRenderCategoryBar = !!siteConfig.categoryBar;
 const navbarWidthFull = siteConfig.navbar.widthFull ?? false;
 
