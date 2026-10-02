@@ -23,6 +23,24 @@ export const friendsPageConfig: FriendsPageConfig = {
 // 友链配置
 export const friendsConfig: FriendLink[] = [
 	{
+		title: "SurviveXJTU · 西交生存指南",
+		imgurl: "/assets/images/links/survive-xjtu.svg",
+		desc: "面向西交学子的生存指南，包含新生指引、保研须知与学习路线。",
+		siteurl: "https://survivexjtu.github.io/",
+		tags: ["大学生活", "生存指南"],
+		weight: 19,
+		enabled: true,
+	},
+	{
+		title: "Linux.do · 推荐阅读",
+		imgurl: "/assets/images/links/linux-do.svg",
+		desc: "收藏的 Linux.do 社区帖子，点击阅读原文。",
+		siteurl: "https://linux.do/t/topic/1710548",
+		tags: ["社区", "推荐阅读"],
+		weight: 18,
+		enabled: true,
+	},
+	{
 		title: "上海交通大学生存手册",
 		imgurl: "/assets/images/links/survive-sjtu.svg",
 		desc: "大学生活与求学经验的分享，作为《喀什大学生存手册》的参考。",

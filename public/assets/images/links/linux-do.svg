@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#f5efdf"/>
+  <path d="m17 21-8 9 8 9m30-18 8 9-8 9M36 17l-8 26" fill="none" stroke="#715b31" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="32" y="55" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="8" font-weight="700" fill="#715b31">LINUX.DO</text>
+</svg>
