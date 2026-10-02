@@ -23,6 +23,15 @@ export const friendsPageConfig: FriendsPageConfig = {
 // 友链配置
 export const friendsConfig: FriendLink[] = [
 	{
+		title: "华南理工生存手册",
+		imgurl: "/assets/images/links/survive-scut.svg",
+		desc: "面向华工学子的大学生活参考，共建共享，薪火相传。",
+		siteurl: "https://go.scut.me/",
+		tags: ["华南理工大学", "生存手册"],
+		weight: 21,
+		enabled: true,
+	},
+	{
 		title: "SurviveXJTU · 西交生存指南",
 		imgurl: "/assets/images/links/survive-xjtu.svg",
 		desc: "面向西交学子的生存指南，包含新生指引、保研须知与学习路线。",
@@ -32,11 +41,11 @@ export const friendsConfig: FriendLink[] = [
 		enabled: true,
 	},
 	{
-		title: "Linux.do · 推荐阅读",
+		title: "致新生的你/ 又名 关于AI入门以及泛保研/科研相关的建议",
 		imgurl: "/assets/images/links/linux-do.svg",
-		desc: "收藏的 Linux.do 社区帖子，点击阅读原文。",
+		desc: "Linux.do 社区文章，分享 AI 学习、科研入门与保研相关的建议。",
 		siteurl: "https://linux.do/t/topic/1710548",
-		tags: ["社区", "推荐阅读"],
+		tags: ["AI入门", "保研", "科研"],
 		weight: 18,
 		enabled: true,
 	},
