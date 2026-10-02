@@ -10,6 +10,46 @@
 
 Windows 下已启用 300ms 轮询监听，避免文件事件误报引发服务连续重启。第一次访问需要编译，后续保存正文会自动更新。
 
+在 VS Code 按 `Ctrl+P` 输入下表的文件路径即可打开，编辑后按 `Ctrl+S` 保存，浏览器会更新。Markdown 文件可按 `Ctrl+Shift+V` 查看文字预览，最终排版以网站为准。
+
+## 常用修改入口
+
+| 想改什么 | 打开哪个文件 | 修改的位置 |
+| --- | --- | --- |
+| 首页名句、循环文字与背景 | `src/config/backgroundWallpaper.ts` | `homeText.title`、`homeText.subtitle`、`typewriter`、`src.desktop/mobile` |
+| 头像、昵称、简介、联系方式 | `src/config/profileConfig.ts` | `avatar`、`name`、`bio`、`links` |
+| 网站名称、介绍、关键词、正式域名 | `src/config/siteConfig.ts` | `title`、`description`、`keywords`、`site_url` |
+| 顶部导航 | `src/config/navBarConfig.ts` | `links` 和 `LinkPresets` |
+| 侧边公告 | `src/config/announcementConfig.ts` | 公告标题、正文与链接 |
+| 友链 | `src/config/friendsConfig.ts` | `friendsConfig` 列表 |
+| 关于我 | `src/content/spec/about.md` | Markdown 正文 |
+| 手册各篇 | `src/content/handbook/` | 下方篇章表对应的文件 |
+| 博客文章 | `src/content/posts/` | 一篇文章对应一个 `.md` 文件 |
+
+### 头像和首页图片
+
+头像已采用你提供的 FAN 1 背影照片；横幅已采用你提供的挥手照片，电脑版本适配为宽图，手机版保留方形构图。网站读取项目中的 WebP 文件，不依赖微信或临时文件目录。
+
+- 头像：`public/assets/images/profile/fan-avatar.webp`。
+- 电脑横幅：`public/assets/images/wallpaper/fan-wave-desktop.webp`。
+- 手机横幅：`public/assets/images/wallpaper/fan-wave-mobile.webp`。
+
+以后换图，把新文件放在 `public/assets/images/` 中，并修改配置路径。`public` 目录不写进网址，例如文件 `public/assets/images/profile/my-avatar.jpg`，配置填写 `/assets/images/profile/my-avatar.jpg`。
+
+### 首页动态文字
+
+主题原有打字机效果已恢复。大标题是固定的「往者不可谏，来者犹可追。」，其下三句话逐字输入、删除并循环。修改 `homeText.subtitle` 数组即可换句子：
+
+```ts
+subtitle: [
+  "记录电气所学，分享求学来路。",
+  "他山之石，可以攻玉。",
+  "Per Aspera Ad Astra.",
+],
+```
+
+`typewriter.enable: true` 开启动效，`speed` 控制每个字的输入间隔，`deleteSpeed` 控制删除间隔，`pauseTime` 控制完整显示后的停留时间，单位均为毫秒。
+
 ## 喀什大学生存手册
 
 总目录：`/handbook/`。每个篇章是独立 Markdown 文件：
@@ -53,6 +93,51 @@ status: outline
 
 两篇入口已设置置顶，页面注明仍在整理。保研复盘按实际经历补充时间线、条件、准备、选择与判断。
 
+## 写一篇新文章
+
+最方便的是复制下面的某个栏目模板，重命名，再填正文。也可以在 VS Code 终端运行：
+
+```powershell
+pnpm.cmd new-post my-first-note
+```
+
+这会创建 `src/content/posts/my-first-note.md`。创建命令默认设为 `draft: false`，尚未写完时先改为 `true`。开头两条 `---` 之间是文章信息，正文写在第二条 `---` 之后：
+
+```markdown
+---
+title: 我的第一篇电气笔记
+published: 2026-10-02
+description: 用一两句话说明这篇文章讲什么。
+tags: [电气学习, 课程笔记]
+category: 电气笔记
+author: Thach Soul
+draft: true
+comment: false
+slug: my-first-note
+---
+
+## 我想解决的问题
+
+在这里写正文。
+
+## 我的理解
+
+继续写正文。
+
+## 参考资料
+
+[资料名称](https://example.com)
+```
+
+- `title` 是显示标题，`description` 是文章卡片简介。
+- `published` 填实际日期；修改旧文时可以另加 `updated: YYYY-MM-DD`。
+- `category` 选电气笔记、技术实践、求学记录或生活随想；`tags` 可填写多个。纯数字标签要加引号，如 `"985"`。
+- `slug` 是网址中的名字，每篇需不同，例如 `/posts/my-first-note/`。
+- `draft: true` 在本地开发可预览，生产网站不发布；完成后改为 `false`。
+- `pinned: true` 可置顶，普通文章可不写这一行。
+
+Markdown 常用写法：`## 小节标题`、`**重点**`、`- 列表项`、`[链接文字](网址)`。插图可放在 `public/assets/images/posts/`，正文写 `![图片说明](/assets/images/posts/图片文件名.jpg)`。公式用 `$...$` 写行内公式，或用两行 `$$` 包住独立公式。
+
 ## 其他三个栏目
 
 - `src/content/posts/electrical-notes-template.md`：电气笔记模板。
@@ -66,7 +151,7 @@ status: outline
 - 关于：`src/content/spec/about.md`。
 - 项目：`src/content/projects/personal-site.md`，目前只展示已实际存在的个人网站。
 - 随记：用 `pnpm.cmd new-d "随记正文"` 创建，初始不放虚构的动态。
-- 头像：`src/config/profileConfig.ts`，当前是 TS 字母占位图，可换为自己的公开头像。
+- 头像：`src/config/profileConfig.ts`，当前采用你提供的 FAN 1 背影照片。
 - 正式域名尚未确定，`siteConfig.site_url` 暂用本地地址；上线前替换为真实域名。
 
 ## 主题示例
