@@ -10,12 +10,12 @@ Thach Soul 的电气札记，基于 [CuteLeaf/Firefly](https://github.com/CuteLe
 
 ```powershell
 pnpm.cmd install --frozen-lockfile
-pnpm.cmd dev --host 127.0.0.1 --port 4321
+powershell -ExecutionPolicy Bypass -File .\scripts\preview-site.ps1
 ```
 
-打开 http://127.0.0.1:4321/ 。Codex 环境下也可执行 `powershell -ExecutionPolicy Bypass -File .\scripts\preview-site.ps1`，避免首次自动后台启动超时。
+脚本在后台启动 `http://127.0.0.1:4322/`，检查页面就绪后自动用 Microsoft Edge 打开。重复执行会复用已有服务，不会再启动第二个实例；关闭启动终端后服务继续运行。只启动服务、不打开 Edge 时加 `-NoOpen`；打开指定页面时加 `-Page /handbook/kashgar-and-me/`。
 
-VS Code 终端保持开发命令运行，保存文件后浏览器会自动更新。首次启动与首次打开页面需要编译，请等终端显示 `ready` 和 `Local` 地址后再访问；端口被占用时以终端实际输出的地址为准。`pnpm preview` 仅查看已构建页面，不用于边改边预览。主题字体从本地 npm 依赖加载，避免启动时等待远程字体服务。
+保存文件后 Edge 中的页面会自动更新。也可直接运行 `pnpm.cmd dev`，默认地址同样是 `http://127.0.0.1:4322/`，首次启动与首次打开页面需要编译，请等终端显示 `ready` 和 `Local` 地址后再访问。端口被占用时明确报错，避免自动换端口后书签失效。不要用 `--ignore-lock` 同时启动多个开发服务，它们会共用 Vite 缓存。`pnpm preview` 仅查看已构建页面，不用于边改边预览。主题字体从本地 npm 依赖加载，避免启动时等待远程字体服务。
 
 Windows 若提示找不到 `pnpm.cmd`，先在终端执行 `npm.cmd install --global pnpm@11.22.0 --registry=https://registry.npmjs.org`，再新建终端。若仍找不到，检查 `npm.cmd config get prefix` 输出的目录是否已加入用户 PATH。
 
@@ -25,10 +25,12 @@ Windows 若提示找不到 `pnpm.cmd`，先在终端执行 `npm.cmd install --gl
 pnpm.cmd check
 pnpm.cmd type-check
 pnpm.cmd build
-pnpm.cmd preview --host 127.0.0.1 --port 4321
+powershell -ExecutionPolicy Bypass -File .\scripts\preview-site.ps1
 ```
 
 Windows PowerShell 使用 `pnpm.cmd`，其他终端使用 `pnpm`。`dist/` 是构建产物，不提交 Git。GitHub Actions 配置检查及构建，未配置自动部署。
+
+停止后台开发服务用 `pnpm.cmd dev stop`；查看状态和日志用 `pnpm.cmd dev status`、`pnpm.cmd dev logs`。
 
 ## 内容与配置
 

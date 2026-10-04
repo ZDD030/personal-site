@@ -71,6 +71,10 @@ export default defineConfig({
 
 	base: "/",
 	trailingSlash: "always",
+	server: {
+		host: "127.0.0.1",
+		port: 4322,
+	},
 
 	// 字体配置 - 只加载实际使用的字体，跳过未引用的以加快构建
 	fonts: (() => {
@@ -355,6 +359,7 @@ export default defineConfig({
 	vite: {
 		plugins: [tailwindcss()],
 		server: {
+			strictPort: true,
 			watch: {
 				// Windows 原生监听出现成批的误报删除事件时会让开发服务不断重启。
 				usePolling: process.platform === "win32",

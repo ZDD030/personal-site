@@ -4,9 +4,11 @@
 
 ## 日常编辑
 
-在 VS Code 打开项目根目录，运行 `pnpm.cmd dev --host 127.0.0.1 --port 4322`。终端显示 ready 后打开对应地址，保存文件即可预览。
+在 VS Code 打开项目根目录，运行 `powershell -ExecutionPolicy Bypass -File .\scripts\preview-site.ps1`。脚本统一使用 `http://127.0.0.1:4322/`，后台启动服务并等待页面就绪，然后打开 Microsoft Edge。保存文件即可预览，关闭启动终端不会停止后台服务。
 
-运行检查或构建前停止 dev，完成后再启动。`pnpm preview` 不随源码修改更新。
+运行检查或构建前用 `pnpm.cmd dev stop` 停止 dev，完成后再执行启动脚本。`pnpm.cmd dev status`、`pnpm.cmd dev logs` 可查看状态和日志。不要用 `--ignore-lock` 启动第二个服务，否则多个服务会争用同一份 Vite 缓存。`pnpm preview` 不随源码修改更新。
+
+脚本加 `-Page /handbook/kashgar-and-me/` 可直接打开第一篇，加 `-NoOpen` 可只启动服务。重复启动复用已有实例；旧的 `/handbook/arrival/` 链接仍会自动跳转到第一篇。
 
 Windows 下已启用 300ms 轮询监听，避免文件事件误报引发服务连续重启。第一次访问需要编译，后续保存正文会自动更新。
 
@@ -59,7 +61,7 @@ subtitle: [
 | 文件 | 篇章 |
 | --- | --- |
 | `src/content/handbook/00-preface.md` | 序 |
-| `src/content/handbook/01-arrival.md` | 初来喀大 |
+| `src/content/handbook/01-kashgar-and-me.md` | 喀大于我，我与喀大 |
 | `src/content/handbook/02-learning.md` | 大学里的学习 |
 | `src/content/handbook/03-electrical.md` | 电气专业的路 |
 | `src/content/handbook/04-resources.md` | 信息、资源与机会 |
@@ -67,23 +69,25 @@ subtitle: [
 | `src/content/handbook/06-life.md` | 生活、关系与自我 |
 | `src/content/handbook/07-afterword.md` | 后记 |
 
-序是可继续修改的初稿；其余篇章先列出标题和小节。`<!-- ... -->` 是只在编辑器里可见的写作提示，补充正文后可以删除。
+序与第一篇已有初稿，第一篇仍有小节待补充；其余篇章先列出标题和小节。这些提纲可随实际写作调整，各篇可以独立阅读。`<!-- ... -->` 是只在编辑器里可见的写作提示，补充正文后可以删除。
 
 手册 Frontmatter 示例：
 
 ```yaml
 ---
-title: 第一篇｜初来喀大
-description: 入学适应、信息入口与最初的生活安排。
+title: 第一篇｜喀大于我，我与喀大
+description: 从录取时的失落，到三年求学中的竞赛、联培、科研与升学选择。
+slug: kashgar-and-me
 order: 1
-status: outline
+status: draft
 ---
 ```
 
-- `order` 为数字，决定目录顺序。
+- `order` 为数字，决定目录顺序和前后篇导航，与文件名及写作先后无关。调整排序后，标题中的“第一篇、第二篇”等编号也需相应修改。
 - `status: outline` 显示“写作提纲”；`draft` 显示“初稿”；`complete` 显示“已整理”。手册中的 status 只表示整理进度，各章均可阅读。
-- 文件名数字前缀不进入网址，如 `01-arrival.md` 对应 `/handbook/arrival/`。已有篇章尽量保留文件名，避免旧链接失效。
-- 新增 `.md` 文件后会自动进入目录和前后篇导航；写好标题、描述、顺序与状态即可。
+- `slug` 决定网址，如 `slug: kashgar-and-me` 对应 `/handbook/kashgar-and-me/`。建议使用小写英文与连字符；确定后可保留，不必随标题或顺序改变。
+- 未填写 `slug` 时沿用文件名（去掉数字前缀和 `.md`），例如 `02-learning.md` 对应 `/handbook/learning/`。第一篇原来的 `/handbook/arrival/` 已设置跳转；以后修改其他篇章的网址时，也要处理旧链接。
+- 新增 `.md` 文件后会自动进入目录和前后篇导航；写好标题、描述、网址、顺序与状态即可。首页的手册入口链接总目录，无需另行维护一份固定章节列表。
 - 学校政策、费用及申请规则注明适用年份与原始来源；不预填未经确认的学校规定或个人经历。
 
 ## 首批文章
