@@ -57,13 +57,13 @@ export const backgroundWallpaper: BackgroundWallpaperConfig = {
 			// 是否启用主页横幅文字
 			enable: true,
 			// 主页横幅主标题
-			title: "往者不可谏，来者犹可追。",
+			title: "往者不可谏，来者犹可追",
 			// 主页横幅主标题字体大小
 			titleSize: "3rem",
 			// 主页横幅副标题
 			subtitle: [
-				"记录电气所学，分享求学来路。",
-				"他山之石，可以攻玉。",
+				"记录电气所学，分享求学来路",
+				"他山之石，可以攻玉",
 				"Per Aspera Ad Astra.",
 			],
 			// 主页横幅副标题字体大小

@@ -12,7 +12,7 @@ export const profileConfig: ProfileConfig = {
 	name: "Thach Soul",
 
 	// 个人签名
-	bio: "Per Aspera Ad Astra · 电气工程及其自动化 · 四非保研至华南理工大学（985）",
+	bio: "Per Aspera Ad Astra",
 
 	// 链接配置
 	// 已经预装的图标集：fa7-brands，fa7-regular，fa7-solid，material-symbols，simple-icons
