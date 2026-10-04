@@ -3,6 +3,7 @@ import type { MarkdownInstance } from "astro";
 export type HandbookFrontmatter = {
 	title: string;
 	description: string;
+	slug?: string;
 	order: number;
 	status: "outline" | "draft" | "complete";
 };
@@ -21,12 +22,17 @@ export function getHandbookChapters(): HandbookChapter[] {
 	return Object.entries(chapterModules)
 		.map(([file, chapter]) => ({
 			...chapter,
-			slug: file.split("/").at(-1)!.replace(/^\d+-/, "").replace(/\.md$/, ""),
+			slug:
+				chapter.frontmatter.slug?.trim() ||
+				file.replace(/^.*\//, "").replace(/^\d+-/, "").replace(/\.md$/, ""),
 		}))
 		.sort((a, b) => a.frontmatter.order - b.frontmatter.order);
 }
 
-export const handbookStatusLabels: Record<HandbookFrontmatter["status"], string> = {
+export const handbookStatusLabels: Record<
+	HandbookFrontmatter["status"],
+	string
+> = {
 	outline: "写作提纲",
 	draft: "初稿",
 	complete: "已整理",

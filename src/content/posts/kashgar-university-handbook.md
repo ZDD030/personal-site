@@ -1,7 +1,7 @@
 ---
 title: 喀什大学生存手册：序与目录
 published: 2026-10-02
-description: 从序开始，逐章整理入学、学习、电气专业、升学与生活。目前为初稿与写作提纲。
+description: 记录我与喀大的求学经历，整理学习、专业、升学与生活经验。各篇可独立阅读，内容持续补充。
 tags: [喀什大学, 大学生存手册, 求学记录]
 category: 求学记录
 author: Thach Soul
@@ -13,22 +13,17 @@ slug: kashgar-university-handbook
 
 > 他山之石，可以攻玉。
 
-这份手册正在逐章编写，序已有初稿，其余篇章先列出提纲。具体经验、资料出处与适用年份将陆续补充。
+这份手册正在逐步编写，序与第一篇已有初稿，其余篇章目前以提纲为主。具体经验、资料出处与适用年份将陆续补充，篇章安排也会随写作调整。
 
 ## 从哪里开始
 
-[打开手册总目录](/handbook/) · [阅读序](/handbook/preface/)
+[打开手册总目录](/handbook/) · [阅读序](/handbook/preface/) · [阅读第一篇](/handbook/kashgar-and-me/)
 
-## 篇章安排
+## 怎样阅读
 
-1. [序｜写给仍在摸索的你](/handbook/preface/)
-2. [第一篇｜初来喀大](/handbook/arrival/)
-3. [第二篇｜大学里的学习](/handbook/learning/)
-4. [第三篇｜电气专业的路](/handbook/electrical/)
-5. [第四篇｜信息、资源与机会](/handbook/resources/)
-6. [第五篇｜升学与保研](/handbook/further-study/)
-7. [第六篇｜生活、关系与自我](/handbook/life/)
-8. [后记｜来者犹可追](/handbook/afterword/)
+各篇可以独立阅读，按自己关心的主题选择即可。[《喀大于我，我与喀大》](/handbook/kashgar-and-me/)记录了从录取到三年求学的经历；其他篇章将围绕学习、专业、资源、升学与生活逐步展开。
+
+最新的篇章标题、排列和整理进度见[手册总目录](/handbook/)。
 
 ## 延伸阅读
 
