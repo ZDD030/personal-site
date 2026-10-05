@@ -39,3 +39,42 @@ const headings = chapter.getHeadings();
         {next && <a class="card-base p-4 text-right" href={`/handbook/${next.slug}/`}><span class="block text-xs text-black/45 dark:text-white/45">下一篇</span><span class="mt-1 block text-sm font-bold">{next.frontmatter.title}</span></a>}
     </nav>
 </MainGridLayout>
+
+<style>
+    :global(.handbook-content .handbook-highlight) {
+        margin-block: 1.75rem;
+        padding: 1rem 1.25rem;
+        border-left: 3px solid var(--primary);
+        border-radius: 0 0.75rem 0.75rem 0;
+        background: var(--btn-regular-bg);
+    }
+
+    :global(.handbook-content .handbook-highlight > p) {
+        margin: 0;
+    }
+
+    :global(.handbook-content .handbook-excerpt) {
+        margin-block: 1.75rem;
+        border: 1px solid var(--line-color);
+        border-radius: 0.75rem;
+        overflow: hidden;
+    }
+
+    :global(.handbook-content .handbook-excerpt > summary) {
+        padding: 1rem 1.25rem;
+        cursor: pointer;
+        color: var(--primary);
+        background: var(--btn-regular-bg);
+        font-weight: 600;
+        line-height: 1.7;
+    }
+
+    :global(.handbook-content .handbook-excerpt > summary:focus-visible) {
+        outline: 2px solid var(--primary);
+        outline-offset: -3px;
+    }
+
+    :global(.handbook-content .handbook-excerpt > blockquote) {
+        margin: 1.25rem;
+    }
+</style>

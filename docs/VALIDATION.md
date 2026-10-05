@@ -82,3 +82,11 @@
 - 新增 `pnpm dev:edge`，已有依赖时也可使用 `npm run dev:edge`。脚本直接启动隐藏的 Node 进程，最多等待 180 秒，并复用已有或正在启动的服务。保留 Astro 服务锁，`pnpm dev stop` 和 `pnpm dev status` 仍可管理服务。
 - 在 Windows PowerShell 5.1 中验证启动、重复调用、退出启动脚本后的持续访问，以及自动打开 Microsoft Edge。首页和第一篇均返回 200，并包含完整正文；重复调用复用同一 PID。
 - PowerShell 语法检查通过，脚本保留 UTF-8 BOM，兼容 Windows PowerShell 5.1 的中文读取。
+
+## 第一篇正文与阅读排版（2026-10-05）
+
+- 完成第一篇的升学取舍、学校感受、「关键的抉择」和「带着镣铐跳舞」等初稿；引用出处链接指向《上海交通大学生存手册》的具体章节，六段引文与来源原文一致。
+- 在最后一轮仅做排版调整：拆分长段落、少量加粗、添加分隔线和两处淡色重点块，将长引文设为可展开。去除排版标记与空白后，调整前后的正文、标点及叙述顺序一致。
+- `pnpm check`：264 个文件，0 错误、0 警告、0 提示；`pnpm type-check` 和完整 `pnpm build` 通过，生成 39 个页面，Pagefind 索引 15 个正文页面。Markdown 格式检查通过（不检查 MD013）。
+- 使用实际 Microsoft Edge 检查 1440px 桌面、390px 手机和深色模式。无横向溢出；引文默认折叠，可用 Enter 展开或收起，展开后仍含六段原文，后续正文位于引用之外。重启后的最终访问返回 200，未捕获页面脚本或资源加载错误。
+- 截图保存在被忽略的 `.local-archive/readability-desktop.png`、`.local-archive/readability-mobile.png`、`.local-archive/readability-excerpt.png` 和 `.local-archive/readability-dark.png`。验证不包含网站部署。
