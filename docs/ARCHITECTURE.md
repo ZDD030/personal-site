@@ -29,7 +29,7 @@ dist/             构建输出，Git 忽略
 
 章节网址优先使用 Frontmatter 的 `slug`，未填写时由文件名去掉数字前缀生成；标题、排序与网址可分别调整。第一篇已改为 `/handbook/kashgar-and-me/`，原 `/handbook/arrival/` 跳转到新地址。篇章保留编号，各篇可独立阅读；序与第一篇已有初稿，其余提纲可随实际内容调整。
 
-本地开发统一使用 `127.0.0.1:4322`，占用时不自动更换端口。`scripts/preview-site.ps1` 启动单个 Astro 后台服务，确认目标页面就绪后在 Microsoft Edge 打开；重复执行复用已有实例。检查和构建前停止开发服务，避免并行写入 `.astro` 和 Vite 缓存。
+本地开发统一使用 `127.0.0.1:4322`，占用时不自动更换端口。`pnpm dev:edge` 调用 `scripts/preview-site.ps1`，在隐藏进程中启动单个 Astro 服务，最多等待 180 秒，避开 Astro `--background` 固定的 30 秒超时；确认目标页面就绪后在 Microsoft Edge 打开。脚本复用已有或正在启动的实例，Astro 的 stop/status 命令仍可管理服务。检查和构建前停止开发服务，避免并行写入 `.astro` 和 Vite 缓存。
 
 ## Git 与发布
 

@@ -4,7 +4,7 @@
 
 ## 日常编辑
 
-在 VS Code 打开项目根目录，运行 `powershell -ExecutionPolicy Bypass -File .\scripts\preview-site.ps1`。脚本统一使用 `http://127.0.0.1:4322/`，后台启动服务并等待页面就绪，然后打开 Microsoft Edge。保存文件即可预览，关闭启动终端不会停止后台服务。
+在 VS Code 打开项目根目录，运行 `pnpm dev:edge`（已有依赖时也可用 `npm run dev:edge`）。脚本统一使用 `http://127.0.0.1:4322/`，后台启动服务，最多等待 180 秒，页面就绪后打开 Microsoft Edge。保存文件即可预览，关闭启动终端不会停止后台服务。避免直接使用 `astro dev --background`，它会在启动超过 30 秒时结束服务。
 
 运行检查或构建前用 `pnpm.cmd dev stop` 停止 dev，完成后再执行启动脚本。`pnpm.cmd dev status`、`pnpm.cmd dev logs` 可查看状态和日志。不要用 `--ignore-lock` 启动第二个服务，否则多个服务会争用同一份 Vite 缓存。`pnpm preview` 不随源码修改更新。
 

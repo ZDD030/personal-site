@@ -10,10 +10,10 @@ Thach Soul 的电气札记，基于 [CuteLeaf/Firefly](https://github.com/CuteLe
 
 ```powershell
 pnpm.cmd install --frozen-lockfile
-powershell -ExecutionPolicy Bypass -File .\scripts\preview-site.ps1
+pnpm dev:edge
 ```
 
-脚本在后台启动 `http://127.0.0.1:4322/`，检查页面就绪后自动用 Microsoft Edge 打开。重复执行会复用已有服务，不会再启动第二个实例；关闭启动终端后服务继续运行。只启动服务、不打开 Edge 时加 `-NoOpen`；打开指定页面时加 `-Page /handbook/kashgar-and-me/`。
+脚本在后台启动 `http://127.0.0.1:4322/`，检查页面就绪后自动用 Microsoft Edge 打开。首次启动最多等待 180 秒，避开 Astro `--background` 的固定 30 秒超时。重复执行会复用已有或正在启动的服务；关闭启动终端后服务继续运行。只启动服务、不打开 Edge 时运行 `pnpm dev:edge -NoOpen`；打开指定页面时运行 `pnpm dev:edge -Page /handbook/kashgar-and-me/`。已有依赖时，也可用 `npm run dev:edge` 启动同一脚本。
 
 保存文件后 Edge 中的页面会自动更新。也可直接运行 `pnpm.cmd dev`，默认地址同样是 `http://127.0.0.1:4322/`，首次启动与首次打开页面需要编译，请等终端显示 `ready` 和 `Local` 地址后再访问。端口被占用时明确报错，避免自动换端口后书签失效。不要用 `--ignore-lock` 同时启动多个开发服务，它们会共用 Vite 缓存。`pnpm preview` 仅查看已构建页面，不用于边改边预览。主题字体从本地 npm 依赖加载，避免启动时等待远程字体服务。
 

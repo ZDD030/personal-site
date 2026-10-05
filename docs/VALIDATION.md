@@ -75,3 +75,10 @@
 - 使用安装的 Microsoft Edge 验证旧链接、新章节、序、学习篇和首页；目录切换及连续三次刷新正常，正文可见，未捕获页面脚本异常或本站资源的 HTTP 错误。桌面图片宽 288px，390px 手机视口下宽 252px，无横向溢出。
 - 创建临时验证章节，保存修改后 Edge 自动显示新正文，无需手动刷新；临时章节已删除，未进入生产构建或 Git 提交。
 - Edge 桌面和手机截图保存在被忽略的 `.local-archive/edge-handbook-fixed-desktop.png`、`.local-archive/edge-handbook-fixed-mobile.png`。验证覆盖本轮访问、导航、刷新和热更新，不代表长时间运行的内存或帧率测试。
+
+## Windows 冷启动与 Edge 启动入口（2026-10-05）
+
+- 实测一次 Astro 初始化约 65 秒；`astro dev --background` 固定在 30 秒后结束未就绪的进程，是本次启动超时的原因。
+- 新增 `pnpm dev:edge`，已有依赖时也可使用 `npm run dev:edge`。脚本直接启动隐藏的 Node 进程，最多等待 180 秒，并复用已有或正在启动的服务。保留 Astro 服务锁，`pnpm dev stop` 和 `pnpm dev status` 仍可管理服务。
+- 在 Windows PowerShell 5.1 中验证启动、重复调用、退出启动脚本后的持续访问，以及自动打开 Microsoft Edge。首页和第一篇均返回 200，并包含完整正文；重复调用复用同一 PID。
+- PowerShell 语法检查通过，脚本保留 UTF-8 BOM，兼容 Windows PowerShell 5.1 的中文读取。
