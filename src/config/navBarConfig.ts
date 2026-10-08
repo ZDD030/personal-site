@@ -18,7 +18,7 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 			icon: "material-symbols:article",
 			children: [
 				LinkPresets.Archive,
-				...["电气笔记", "技术实践", "求学记录", "生活随想"].map((name) => ({
+				...["读研日记", "技术实践", "求学记录", "生活随想"].map((name) => ({
 					name,
 					url: `/archive/?category=${encodeURIComponent(name)}`,
 					icon: "material-symbols:bookmark-rounded",
@@ -31,6 +31,11 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 			icon: "material-symbols:menu-book-rounded",
 		},
 		LinkPresets.Projects,
+		{
+			name: "保研辅导",
+			url: "/mentoring/",
+			icon: "material-symbols:menu-book-rounded",
+		},
 		LinkPresets.Dynamic,
 		LinkPresets.Friends,
 		LinkPresets.About,

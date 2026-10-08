@@ -1,0 +1,37 @@
+---
+import Markdown from "@components/common/Markdown.astro";
+import { Content } from "@/content/spec/mentoring.md";
+import MainGridLayout from "@/layouts/MainGridLayout.astro";
+---
+
+<MainGridLayout
+	title="电气保研辅导"
+	description="Thach Soul 本人提供电气保研辅导，协助择校、申请材料与面试准备。套餐 200／300／500 元，简历修改 20 元，模拟面试 50 元。"
+>
+	<div class="card-base relative w-full min-w-0 overflow-hidden rounded-(--radius-large) px-5 py-6 sm:px-9">
+		<Markdown class="mt-2 mentoring-content">
+			<Content />
+		</Markdown>
+	</div>
+</MainGridLayout>
+
+<style>
+	:global(.mentoring-content table) {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	:global(.mentoring-content th),
+	:global(.mentoring-content td) {
+		white-space: normal;
+		overflow-wrap: anywhere;
+	}
+
+	:global(.mentoring-content th:first-child) {
+		width: 6rem;
+	}
+
+	:global(.mentoring-content th:nth-child(2)) {
+		width: 6.5rem;
+	}
+</style>

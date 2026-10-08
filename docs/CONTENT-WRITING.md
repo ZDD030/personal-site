@@ -25,6 +25,8 @@ Windows 下已启用 300ms 轮询监听，避免文件事件误报引发服务�
 | 侧边公告 | `src/config/announcementConfig.ts` | 公告标题、正文与链接 |
 | 友链 | `src/config/friendsConfig.ts` | `friendsConfig` 列表 |
 | 关于我 | `src/content/spec/about.md` | Markdown 正文 |
+| 保研辅导正文、套餐、价格与联系方式 | `src/content/spec/mentoring.md` | Markdown 正文 |
+| 保研辅导页面标题、摘要与排版 | `src/pages/mentoring.astro` | `MainGridLayout` 的标题和摘要，以及正文容器样式 |
 | 手册各篇 | `src/content/handbook/` | 下方篇章表对应的文件 |
 | 博客文章 | `src/content/posts/` | 一篇文章对应一个 `.md` 文件 |
 
@@ -96,6 +98,7 @@ status: draft
 | --- | --- |
 | `src/content/posts/kashgar-university-handbook.md` | 首页的手册入口，链接各个篇章 |
 | `src/content/posts/baoyan-to-scut.md` | 四非保研至华南理工的复盘提纲 |
+| `src/content/posts/graduate-diary-01-power-system-inertia.md` | 读研日记第一期：电力系统惯性时间常数（草稿） |
 
 两篇入口已设置置顶，页面注明仍在整理。保研复盘按实际经历补充时间线、条件、准备、选择与判断。
 
@@ -111,15 +114,17 @@ pnpm.cmd new-post my-first-note
 
 ```markdown
 ---
-title: 我的第一篇电气笔记
+title: 读研日记 01｜电力系统惯性时间常数
 published: 2026-10-02
 description: 用一两句话说明这篇文章讲什么。
 tags: [电气学习, 课程笔记]
-category: 电气笔记
+category: 读研日记
 author: Thach Soul
 draft: true
 comment: false
 slug: my-first-note
+series: 读研日记
+seriesOrder: 1
 ---
 
 ## 我想解决的问题
@@ -137,7 +142,8 @@ slug: my-first-note
 
 - `title` 是显示标题，`description` 是文章卡片简介。
 - `published` 填实际日期；修改旧文时可以另加 `updated: YYYY-MM-DD`。
-- `category` 选电气笔记、技术实践、求学记录或生活随想；`tags` 可填写多个。纯数字标签要加引号，如 `"985"`。
+- `category` 选读研日记、技术实践、求学记录或生活随想；`tags` 可填写多个。纯数字标签要加引号，如 `"985"`。
+- 读研日记使用 `series: 读研日记`，`seriesOrder` 按期数填写，主题会自动生成系列目录与前后篇导航。
 - `slug` 是网址中的名字，每篇需不同，例如 `/posts/my-first-note/`。
 - `draft: true` 在本地开发可预览，生产网站不发布；完成后改为 `false`。
 - `pinned: true` 可置顶，普通文章可不写这一行。
@@ -156,11 +162,19 @@ Markdown 常用写法：`## 小节标题`、`**重点**`、`- 列表项`、`[链
 
 ## 其他三个栏目
 
-- `src/content/posts/electrical-notes-template.md`：电气笔记模板。
+- `src/content/posts/graduate-diary-template.md`：读研日记知识点模板。
 - `src/content/posts/technical-practice-template.md`：技术实践模板。
 - `src/content/posts/life-reflections-template.md`：生活随想模板。
 
 这三个模板设为 `draft: true`，开发预览可见，生产构建与 RSS 中不显示。正式写作时建议复制为新的文件，修改标题、日期和唯一 slug，完成后设为 `draft: false`。
+
+### 读研日记
+
+每期单独整理一个知识点，分类与系列均使用“读研日记”。第一期框架已放在 `src/content/posts/graduate-diary-01-power-system-inertia.md`，开发预览地址是 `/posts/graduate-diary-01-power-system-inertia/`。
+
+第一期目前只包含标题、小节和隐藏的填写提示，定义、公式、算例与参考资料等内容由本人整理后补充。写好前保留 `draft: true`，不会进入生产网站、RSS 或搜索索引；发布时填写实际日期，再改为 `draft: false`。
+
+后续新一期可复制知识点模板，添加 `series: 读研日记` 和 `seriesOrder: 2`（依次递增），再修改标题、日期、文件名与 slug。通用模板本身不加入系列，避免被算作一期日记；小节可随实际内容调整。
 
 ## 关于、项目与随记
 
