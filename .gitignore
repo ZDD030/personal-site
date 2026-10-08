@@ -41,6 +41,7 @@ yarn-error.log*
 !/data/README.md
 /backups/
 /artifacts/
+/outputs/20261006-baoyan/
 /test-results/
 /playwright-report/
 /.playwright-mcp/
