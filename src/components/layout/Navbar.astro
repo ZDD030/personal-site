@@ -123,7 +123,7 @@ const logoVariants = await Promise.all(
 		})),
 );
 ---
-<div id="navbar" class="z-50" style={`--navbar-glass-blur: ${navbarBlur}px;`} data-transparent-mode={navbarTransparentMode} data-is-home={isHomePageCheck} data-full-width={navbarWidthFull}>
+<div id="navbar" class="z-50" style={`--navbar-glass-blur: ${navbarBlur}px;`} data-transparent-mode={navbarTransparentMode} data-is-home={isHomePageCheck} data-full-width={navbarWidthFull} data-compact-menu="false" data-dense-menu="true">
     <script is:inline define:vars={{
       bannerTMode: backgroundWallpaper.banner?.navbar?.transparentMode || "semi",
       bannerBlur: backgroundWallpaper.banner?.navbar?.blur ?? 20,
@@ -160,7 +160,7 @@ const logoVariants = await Promise.all(
         "overflow-visible! h-18 px-4"
     ]}>
         <div class="mx-auto h-full w-full max-w-(--page-width) grid grid-cols-[auto_minmax(0,1fr)_auto] items-center">
-            <a href={url('/')} class="btn-plain scale-animation rounded-lg h-13 px-3 md:px-5 font-bold active:scale-95">
+            <a href={url('/')} class="btn-plain scale-animation rounded-lg h-13 px-3 md:px-5 font-bold whitespace-nowrap active:scale-95">
                 <div class:list={[
                     "flex flex-row items-center text-md",
                     siteConfig.navbar.followTheme ? "text-(--primary)" : "dark:text-white text-black"
@@ -190,14 +190,16 @@ const logoVariants = await Promise.all(
                 </div>
             </a>
             <div class:list={[
-                "hidden lg:flex items-center space-x-1 col-start-2",
+                "navbar-menu-slot hidden lg:flex min-w-0 items-center col-start-2",
                 isNavbarMenuCentered
                     ? "justify-center"
                     : "justify-start pl-2"
             ]}>
-                {links.map((l) => {
-                    return <DropdownMenu link={l} />;
-                })}
+                <div class="navbar-menu-links flex w-max shrink-0 items-center gap-1">
+                    {links.map((l) => {
+                        return <DropdownMenu link={l} />;
+                    })}
+                </div>
             </div>
             <div class="flex col-start-3 justify-self-end">
                 <!--<SearchPanel client:load>-->
@@ -228,8 +230,9 @@ const logoVariants = await Promise.all(
                 )}
                 {/* @ts-ignore */}
                 <LightDarkSwitch client:load></LightDarkSwitch>
-                <button aria-label="Menu" aria-controls="nav-menu-panel" aria-expanded="false" name="Nav Menu" class="btn-plain scale-animation rounded-lg w-11 h-11 active:scale-90 lg:hidden!" id="nav-menu-switch">
+                <button aria-label="导航菜单" aria-controls="nav-menu-panel" aria-expanded="false" name="Nav Menu" class="btn-plain scale-animation rounded-lg px-3 gap-1.5 h-11 whitespace-nowrap active:scale-90" id="nav-menu-switch">
                     <Icon name="material-symbols:menu-rounded" class="text-[1.25rem]"></Icon>
+                    <span class="text-sm font-bold">菜单</span>
                 </button>
             </div>
         </div>
@@ -242,7 +245,75 @@ const logoVariants = await Promise.all(
     </div>
 </div>
 
+<style>
+    #navbar[data-dense-menu="true"] :global(.navbar-menu-links .dropdown-container > a),
+    #navbar[data-dense-menu="true"] :global(.navbar-menu-links .dropdown-trigger) {
+        padding-left: 0.625rem;
+        padding-right: 0.625rem;
+    }
+
+    #navbar[data-dense-menu="true"] :global(.navbar-menu-links .dropdown-trigger) {
+        padding-right: 2rem;
+    }
+
+    #navbar[data-dense-menu="true"] :global(.navbar-menu-links .dropdown-container > a .navbar-icon),
+    #navbar[data-dense-menu="true"] :global(.navbar-menu-links .dropdown-trigger .navbar-icon) {
+        display: none;
+    }
+
+    #navbar[data-compact-menu="true"] .navbar-menu-slot {
+        visibility: hidden;
+        overflow: clip;
+    }
+
+    @media (min-width: 1024px) {
+        #navbar[data-compact-menu="false"] #nav-menu-switch {
+            display: none;
+        }
+    }
+</style>
+
 <script>
+let navbarSizeObserver: ResizeObserver | undefined;
+
+function initNavbarSizing() {
+	navbarSizeObserver?.disconnect();
+	const navbar = document.getElementById("navbar");
+	const slot = navbar?.querySelector<HTMLElement>(".navbar-menu-slot");
+	const menu = navbar?.querySelector<HTMLElement>(".navbar-menu-links");
+	const menuSwitch = document.getElementById("nav-menu-switch");
+	if (!navbar || !slot || !menu || !menuSwitch) return;
+
+	const updateLayout = () => {
+		const mobile = getComputedStyle(slot).display === "none";
+		// 桌面先尝试完整导航，再收紧间距、去掉装饰图标；文字仍然保留。
+		navbar.dataset.compactMenu = String(mobile);
+		navbar.dataset.denseMenu = "false";
+		if (!mobile && menu.getBoundingClientRect().width + 8 > slot.clientWidth) {
+			navbar.dataset.denseMenu = "true";
+		}
+		// 极窄空间才使用带文字的菜单按钮，避免导航栏看起来是空的。
+		const compact = mobile || menu.getBoundingClientRect().width + 8 > slot.clientWidth;
+		navbar.dataset.compactMenu = String(compact);
+		slot.inert = compact;
+		slot.setAttribute("aria-hidden", String(compact));
+	};
+
+	navbarSizeObserver = new ResizeObserver(() => {
+		requestAnimationFrame(updateLayout);
+	});
+	navbarSizeObserver.observe(slot);
+	navbarSizeObserver.observe(menu);
+	updateLayout();
+}
+
+if (document.readyState === "loading") {
+	document.addEventListener("DOMContentLoaded", initNavbarSizing, { once: true });
+} else {
+	initNavbarSizing();
+}
+document.addEventListener("swup:contentReplaced", initNavbarSizing);
+
 function loadButtonScript() {
     let settingBtn = document.getElementById("display-settings-switch");
     if (settingBtn) {
